@@ -1,11 +1,11 @@
 # Prezto
 
 # Link all Prezto .z-files to the home directory, except zpretorc, which we override.
-for $config_file ($DOTFILES/.zprezto/runcoms/z*); do
-    filename = ${config_file##*/}
+for rcfile ($DOTFILES/.zprezto/runcoms/z*); do
+    filename = ${rcfile##*/}
 
     if [[ $filename !== "zpreztorc") ]]; then
-        ln -nfs "$config_file" "$HOME/.$filename"
+        ln -nfs "$rcfile" "$HOME/.$filename"
     fi;
 done
 
