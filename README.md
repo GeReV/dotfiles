@@ -16,7 +16,7 @@ The installation script here will take care of installing the entire environment
 
 The main attraction in this fork are:
 
-- Zsh with [Prezto](https://github.com/sorin-ionescu/prezto) and configurations from [YADR](https://github.com/skwp/dotfiles) over Bash
+- Zsh with [Prezto](https://github.com/sorin-ionescu/prezto) and configurations from [YADR](https://github.com/skwp/dotfiles) instead of Bash
 - [spf13-vim](http://vim.spf13.com) for Vim configurations.
 
 For documentation on how this all works, see [the original repository](https://github.com/cowboy/dotfiles).
