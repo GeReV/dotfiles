@@ -4,7 +4,7 @@
 for rcfile in $DOTFILES/link/.zprezto/runcoms/z*; do
     filename = ${rcfile##*/}
 
-    if [[ $filename != "zpreztorc") ]]; then
+    if [[ $filename != "zpreztorc" ]]; then
         ln -nfs "$rcfile" "$HOME/.$filename"
     fi;
 done
