@@ -33,7 +33,7 @@
 	url = git://github.com/rkh/rbenv-update.git
 [submodule "link/.zprezto"]
 	path = link/.zprezto
-	url = git://github.com:sorin-ionescu/prezto.git
+	url = git://github.com/sorin-ionescu/prezto.git
 [submodule "link/.spf13-vim-3"]
 	path = link/.spf13-vim-3
-	url = git://github.com:spf13/spf13-vim.git
+	url = git://github.com/spf13/spf13-vim.git
