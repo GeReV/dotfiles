@@ -74,5 +74,5 @@ fi
 
 if [[ ! ($SHELL =~ zsh$) ]]; then
     e_header "Setting zsh as default shell"
-    sudo chsh -s `which zsh`
+    chsh -s `which zsh`
 fi
