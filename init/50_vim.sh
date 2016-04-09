@@ -1,5 +1,6 @@
 # Vim
 
-export APP_PATH = "$DOTFILES/link/.spf13-vim-3"
+APP_PATH = "$DOTFILES/link/.spf13-vim-3"
+export APP_PATH
 
-../link/.spf13-vim-3/bootstrap.sh
+source $DOTFILES/link/.spf13-vim-3/bootstrap.sh
