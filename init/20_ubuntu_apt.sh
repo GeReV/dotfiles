@@ -49,6 +49,8 @@ packages=(
   sl
   telnet
   tree
+  vim
+  vim-gnome
   zsh
 )
 
