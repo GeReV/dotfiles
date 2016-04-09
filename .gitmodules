@@ -31,3 +31,6 @@
 [submodule "rbenv-update"]
 	path = link/.rbenv/plugins/rbenv-update
 	url = git://github.com/rkh/rbenv-update.git
+[submodule "link/.zprezto"]
+	path = link/.zprezto
+	url = git@github.com:sorin-ionescu/prezto.git
