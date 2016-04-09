@@ -31,6 +31,7 @@ fi
 
 # Update APT.
 e_header "Updating APT"
+sudo -v
 sudo apt-get -qq update
 sudo apt-get -qq dist-upgrade
 
