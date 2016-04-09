@@ -49,6 +49,7 @@ packages=(
   sl
   telnet
   tree
+  zsh
 )
 
 packages=($(setdiff "${packages[*]}" "$(dpkg --get-selections | grep -v deinstall | awk '{print $1}')"))
@@ -67,4 +68,9 @@ if [[ ! "$(type -P git-extras)" ]]; then
     cd $DOTFILES/vendor/git-extras &&
     sudo make install
   )
+fi
+
+if [[ ! ($SHELL =~ zsh$) ]]; then
+    e_header "Setting zsh as default shell"
+    sudo chsh -s `which zsh`
 fi
