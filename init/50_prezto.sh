@@ -11,7 +11,7 @@ done
 
 # Add the following line to .zshrc so custom configuration is ran for zsh.
 echo "" >> $HOME/.zshrc
-echo "for config_file ($DOTFILES/source/zsh/*.zsh) source $config_file" >> $HOME/.zshrc
+echo "for config_file ($DOTFILES/source/zsh/*.zsh) source \$config_file" >> $HOME/.zshrc
 
 # Create override directories.
 mkdir -p $HOME/.zsh.before
