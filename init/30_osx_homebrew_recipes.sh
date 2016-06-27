@@ -19,6 +19,7 @@ recipes=(
   man2html
   mercurial
   nmap
+  pv
   sl
   ssh-copy-id
   terminal-notifier
