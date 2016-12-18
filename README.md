@@ -35,7 +35,7 @@ _Still untested in OSX_
 
 You should at least update/upgrade APT with `sudo apt-get -qq update && sudo apt-get -qq dist-upgrade` first.
 
-_Tested in Ubuntu 15.10_
+_Tested in Ubuntu 15.10, 16.10_
 
 ## License
 Copyright (c) 2016 Amir Grozki
