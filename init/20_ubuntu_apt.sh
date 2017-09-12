@@ -43,8 +43,10 @@ packages=(
   htop
   id3tool
   libssl-dev
+  libreadline-dev
   mercurial
   nmap
+  ruby-build
   silversearcher-ag
   sl
   telnet
