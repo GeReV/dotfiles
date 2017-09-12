@@ -38,5 +38,5 @@ You should at least update/upgrade APT with `sudo apt-get -qq update && sudo apt
 _Tested in Ubuntu 15.10, 16.10_
 
 ## License
-Copyright (c) 2016 Amir Grozki
+Copyright (c) 2017 Amir Grozki
 Licensed under the MIT license.
