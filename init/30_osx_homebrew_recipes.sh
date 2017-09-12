@@ -7,7 +7,6 @@ is_osx || return 1
 # Homebrew recipes
 recipes=(
   android-platform-tools
-  ansible
   cmatrix
   cowsay
   git
