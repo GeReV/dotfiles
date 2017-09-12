@@ -26,11 +26,6 @@ function nave_install() {
 
 # Global npm modules to install.
 npm_globals=(
-  bower
-  ember-cli
-  grunt-cli
-  grunt-init
-  linken
   node-inspector
   yo
 )
