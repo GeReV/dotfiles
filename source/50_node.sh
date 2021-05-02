@@ -8,10 +8,6 @@ function make_npx_alias () {
   alias $1="npx $@"
 }
 
-make_npx_alias json2yaml
-make_npx_alias pushstate-server
-make_npx_alias yaml2json
-
 function get_last_modified_js_file_recursive() {
   find . -type d \( -name node_modules -o -name .git -o -name .build \) -prune -o -type f \( -name '*.js' -o -name '*.jsx' \) -print0 \
     | xargs -0 stat -f '%m %N' \
