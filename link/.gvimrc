@@ -2,9 +2,19 @@ set go-=T " Hide toolbar
 set go-=r " Hide right scrollbar
 set go-=L " Hide left scrollbar
 
+" Use the Solarized Dark theme
+set background=dark
+colorscheme solarized
+" Use 14pt Monaco
+set guifont=Monaco:h14
+" Don’t blink cursor in normal mode
+set guicursor=n:blinkon0
+" Better line-height
+set linespace=8
+
 if has('win32')
   " My favorite font!
-  set guifont=M+_1m_for_Powerline:h12
+  " set guifont=M+_1m_for_Powerline:h12
 
   " Alt-[, ]: Buffer Navigation
   nmap <M-[> :bprev<CR>
@@ -18,7 +28,7 @@ else
     set guifont=Iosevka\ Term\ 12
   else " OSX
     " My favorite font!
-    set guifont=M+\ 1m\ regular\ Nerd\ Font\ Complete:h16
+    " set guifont=M+\ 1m\ regular\ Nerd\ Font\ Complete:h16
 
     " Cmd-[, ]: Buffer Navigation
     nmap <D-[> :bprev<CR>

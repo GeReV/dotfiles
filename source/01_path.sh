@@ -1,5 +1,6 @@
 paths=(
   ~/.local/bin
+  $HOME/bin
   $DOTFILES/bin
 )
 
