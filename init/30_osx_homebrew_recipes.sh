@@ -30,6 +30,7 @@ recipes=(
   lesspipe
   lua
   lynx
+  m-cli
   man2html
   mercurial
 
