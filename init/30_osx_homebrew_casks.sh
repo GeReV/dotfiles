@@ -9,6 +9,7 @@ kegs=(
   homebrew/cask-drivers
   homebrew/cask-fonts
   homebrew/cask-versions
+  bramstein/webfonttools
 )
 brew_tap_kegs
 

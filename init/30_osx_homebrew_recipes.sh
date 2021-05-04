@@ -6,20 +6,47 @@ is_osx || return 1
 
 # Homebrew recipes
 recipes=(
+  ack
   awscli
+
+  # Install GNU core utilities (those that come with macOS are outdated).
+  # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
   coreutils
+
   cowsay
+
+  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+  findutils
+
   git
+  git-lfs
+  gmp
+  gnupg
+  grep
+  gs
   htop
   id3tool
   jq
   lesspipe
+  lua
+  lynx
   man2html
   mercurial
+
+  # Install some other useful utilities like `sponge`.
+  moreutils
+
   nmap
+  openssh
+  p7zip
+  pigz
+  pv
   postgresql
-  powerline-go
   reattach-to-user-namespace
+  rlwrap
+  screen
+  sfnt2woff
+  sfnt2woff-zopfli
   smartmontools
   ssh-copy-id
   telnet
@@ -29,11 +56,26 @@ recipes=(
   tmux
   tmux-xpanes
   tree
+  vbindiff
   wget
+  woff2
+  zopfli
   zsh
 )
 
 brew_install_recipes
+
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew install gnu-sed --with-default-names
+
+# Install `wget` with IRI support.
+brew install wget --with-iri
+
+brew install vim --with-override-system-vi
+
+brew install imagemagick --with-webp
 
 # Misc cleanup!
 
