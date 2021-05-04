@@ -28,3 +28,6 @@
 [submodule "rbenv-update"]
   path = link/.rbenv/plugins/rbenv-update
   url = https://github.com/rkh/rbenv-update.git
+[submodule "vendor/prezto"]
+	path = vendor/prezto
+	url = https://github.com/sorin-ionescu/prezto
