@@ -71,14 +71,14 @@ brew_install_recipes
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed --with-default-names
+brew install gnu-sed -- --with-default-names
 
 # Install `wget` with IRI support.
-brew install wget --with-iri
+brew install wget -- --with-iri
 
-brew install vim --with-override-system-vi
+brew install vim -- --with-override-system-vi
 
-brew install imagemagick --with-webp
+brew install imagemagick -- --with-webp
 
 # Misc cleanup!
 
