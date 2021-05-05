@@ -4,6 +4,7 @@
 alias g='git'
 function ga() { git add "${@:-.}"; } # Add all files by default
 alias gp='git push'
+alias gpup='gp --set-upstream origin $(gbs)'
 alias gpa='gp --all'
 alias gu='git pull'
 alias gl='git log'
@@ -16,6 +17,7 @@ alias gm='git commit -m'
 alias gma='git commit -am'
 alias gb='git branch'
 alias gba='git branch -a'
+alias gbup='gb --set-upstream-to=origin/$(gbs) $(gbs)'
 function gc() { git checkout "${@:-master}"; } # Checkout master by default
 alias gco='gc'
 alias gcb='gc -b'
@@ -35,16 +37,74 @@ alias gu-all='eachdir git pull'
 alias gp-all='eachdir git push'
 alias gs-all='eachdir git status'
 
+# Set upstream branch
+function gsu() {
+  local branch_name=$(git symbolic-ref --short HEAD)
+  [[ ! "$branch_name" ]] && echo 'Error: current git branch not detected' && return 1
+  local upstream="$(git config "branch.$branch_name.merge")"
+  [[ "$upstream" ]] && echo "Upstream for branch '$branch_name' already set." && return
+  git branch --set-upstream-to=origin/$branch_name $branch_name
+}
+
+# Rebase topic branch onto origin parent branch and update local parent branch
+# to match origin parent branch
+function grbo() {
+  local parent topic parent_sha origin_sha
+  parent=$1
+  topic=$2
+  [[ ! "$parent" ]] && _grbo_err "Missing parent branch." && return 1
+  parent_sha=$(git rev-parse $parent 2>/dev/null)
+  [[ $? != 0 ]] && _grbo_err "Invalid parent branch: $parent" && return 1
+  origin_sha=$(git ls-remote origin $parent | awk '{print $1}')
+  [[ ! "$origin_sha" ]] && _grbo_err "Invalid origin parent branch: origin/$parent" && return 1
+  [[ "$parent_sha" == "$origin_sha" ]] && echo "Same SHA for parent and origin/parent. Nothing to do!" && return
+  if [[ "$topic" ]]; then
+    git rev-parse "$topic" >/dev/null 2>&1
+    [[ $? != 0 ]] && _grbo_err "Invalid topic branch: $topic" && return 1
+  else
+    topic="$(git rev-parse --abbrev-ref HEAD)"
+  fi
+  [[ "$topic" == "HEAD" ]] && _grbo_err "Missing or invalid topic branch." && return 1
+  [[ "$topic" == "$parent" ]] && _grbo_err "Topic and parent branch must be different!" && return 1
+  read -n 1 -r -p "About to rebase $topic onto origin/$parent. Are you sure? [y/N] "
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    echo
+    git fetch &&
+    git rebase --onto origin/$parent $parent "$topic" &&
+    git branch -f $parent origin/$parent
+  else
+    echo "Aborted by user."
+  fi
+}
+function _grbo_err() {
+  echo "Error: $@"
+  echo "Usage: grbo parent-branch [topic-branch]"
+}
+
 # open all changed files (that still actually exist) in the editor
 function ged() {
-  local files=()
-  for f in $(git diff --name-only "$@"); do
-    [[ -e "$f" ]] && files=("${files[@]}" "$f")
-  done
-  local n=${#files[@]}
-  echo "Opening $n $([[ "$@" ]] || echo "modified ")file$([[ $n != 1 ]] && \
-    echo s)${@:+ modified in }$@"
-  q "${files[@]}"
+  local files
+  local _IFS="$IFS"
+  IFS=$'\n'
+  files=($(git diff --name-status "$@" | grep -v '^D' | cut -f2 | sort | uniq))
+  if [[ "$2" ]]; then
+    echo "Opening files modified between $1 and $2"
+  else
+    files+=($(git ls-files --others --exclude-standard))
+    if [[ "$1" ]]; then
+      echo "Opening files modified since $1"
+    else
+      echo "Opening unstaged/untracked modified files"
+    fi
+  fi
+  IFS="$_IFS"
+  gcd
+  if [[ "$(which code)" ]]; then
+    code "$(git rev-parse --show-toplevel)" -n "${files[@]}"
+  else
+    q "${files[@]}"
+  fi
+  cd - > /dev/null
 }
 
 # add a github remote by github username
@@ -62,8 +122,9 @@ function gurl() {
   local remotename="${@:-origin}"
   local remote="$(git remote -v | awk '/^'"$remotename"'.*\(push\)$/ {print $2}')"
   [[ "$remote" ]] || return
+  local host="$(echo "$remote" | perl -pe 's/.*@//;s/:.*//')"
   local user_repo="$(echo "$remote" | perl -pe 's/.*://;s/\.git$//')"
-  echo "https://github.com/$user_repo"
+  echo "https://$host/$user_repo"
 }
 # GitHub URL for current repo, including current branch + path.
 alias gurlp='echo $(gurl)/tree/$(gbs)/$(git rev-parse --show-prefix)'
@@ -139,6 +200,53 @@ function gstat() {
     echo "$line" | sed "s/\|/$e[0m$mode \|/"
   done
   unset IFS
+}
+
+# Rename/delete diff helper
+# (pipe to pbcopy for github comment-friendly output)
+#
+# 1. Check out a branch
+# 2. Get a list of changed files since master:
+#    $ git diff master --name-status
+# 3. Organize listed files into M/D pairs, eg:
+#    M    src/File.jsx
+#    D    src/FileFeatureFlagName.jsx
+#
+#    M    src/File.test.jsx
+#    D    src/FileFeatureFlagName.test.jsx
+# 4. For each pair, run this function, eg:
+#    $ git_diff_rename src/File.jsx src/FileFeatureFlagName.jsx
+#    $ git_diff_rename src/File.test.jsx src/FileFeatureFlagName.test.jsx
+function git_diff_rename() {
+  local prev_commit="$1"
+  local before="$3"
+  local after="$2"
+  if [ -p /dev/stdout ]; then
+    echo -en "<details>\n  <summary>Diff of <code>$before</code> -> <code>$after</code></summary>\n\n"
+    echo -en 'Command:\n```sh\n'
+    echo git diff $prev_commit:"$before" HEAD:"$after"
+    echo -en '```\n\nDiff:\n```diff\n'
+  fi
+  git diff $prev_commit:"$before" HEAD:"$after"
+  if [ -p /dev/stdout ]; then
+    echo -en '```\n</details>\n'
+  fi
+}
+
+# Open a handful of PRs to test the CI system (defaults to 5)
+function git_pr_blaster() {
+  local i new_branch branch="$(gbs)"
+  for i in $(seq 1 ${1:-5}); do
+    new_branch="$branch-test-do-not-merge-$i"
+    git checkout -b "$new_branch" && \
+      echo "$new_branch" >> TEST_PR_DO_NOT_MERGE.txt && \
+      git add . && \
+      git commit -m "$new_branch" && \
+      git push --no-verify && \
+      git checkout - && \
+      git branch -D "$new_branch" && \
+      open "$(gurl)/pull/new/$new_branch"
+  done
 }
 
 # OSX-specific Git shortcuts

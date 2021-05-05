@@ -4,14 +4,14 @@ is_osx || return 1
 # Exit if Homebrew is not installed.
 [[ ! "$(type -P brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
-# Ensure the cask keg and recipe are installed.
-kegs=(caskroom/cask)
+# Ensure the cask kegs are installed.
+kegs=(
+  homebrew/cask-drivers
+  homebrew/cask-fonts
+  homebrew/cask-versions
+  bramstein/webfonttools
+)
 brew_tap_kegs
-recipes=(brew-cask)
-brew_install_recipes
-
-# Exit if, for some reason, cask is not installed.
-[[ ! "$(brew ls --versions brew-cask)" ]] && e_error "Brew-cask failed to install." && return 1
 
 # Hack to show the first-run brew-cask password prompt immediately.
 brew cask info this-is-somewhat-annoying 2>/dev/null
@@ -19,60 +19,29 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 # Homebrew casks
 casks=(
   # Applications
-  1password
-  a-better-finder-rename
-  aluxian-messenger
-  battle-net
-  bettertouchtool
-  charles
+  alfred
+  android-platform-tools
   chromium
-  chronosync
-  dropbox
-  duet
-  easysimbl
-  fastscripts
+  controllermate
+  docker
   firefox
-  google-chrome
+  gimp
   gyazo
-  hermes
   hex-fiend
   iterm2
-  karabiner
-  launchbar
+  karabiner-elements
+  licecap
   macvim
-  menumeters
-  midi-monitor
   moom
-  omnidisksweeper
-  race-for-the-galaxy
-  reaper
-  remote-desktop-connection
-  scroll-reverser
-  seil
-  sharemouse
-  skype
+  ngrok
+  numi
   slack
-  sonos
-  sourcetree
-  spotify
-  star-realms
   steam
-  synology-assistant
-  teamspeak-client
-  teamviewer
-  the-unarchiver
-  todoist
-  totalfinder
-  tower
-  transmission-remote-gui
-  vagrant
   virtualbox
+  visual-studio-code
   vlc
-  ynab
-  # Drivers
-  d235j-xbox360-controller-driver
+  xscreensaver
   # Quick Look plugins
-  betterzipql
   qlcolorcode
   qlmarkdown
   qlprettypatch
@@ -82,9 +51,10 @@ casks=(
   quicknfo
   suspicious-package
   webpquicklook
-  # Color pickers
-  colorpicker-developer
-  colorpicker-skalacolor
+  # Fonts
+  font-m-plus
+  font-mplus-nerd-font
+  font-mplus-nerd-font-mono
 )
 
 # Install Homebrew casks.
@@ -94,7 +64,6 @@ if (( ${#casks[@]} > 0 )); then
   for cask in "${casks[@]}"; do
     brew cask install $cask
   done
-  brew cask cleanup
 fi
 
 # Work around colorPicker symlink issue.

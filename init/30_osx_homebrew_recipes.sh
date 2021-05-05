@@ -6,30 +6,79 @@ is_osx || return 1
 
 # Homebrew recipes
 recipes=(
+  ack
   android-platform-tools
-  cmatrix
+  awscli
+
+  # Install GNU core utilities (those that come with macOS are outdated).
+  # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
+  coreutils
+
   cowsay
+
+  # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
+  findutils
+
   git
-  git-extras
-  htop-osx
-  hub
+  git-lfs
+  gmp
+  gnupg
+  grep
+  gs
+  htop
   id3tool
+  jq
   lesspipe
+  lua
+  lynx
+  m-cli
   man2html
   mercurial
+
+  # Install some other useful utilities like `sponge`.
+  moreutils
+
   nmap
+  openssh
+  p7zip
+  pigz
   pv
-  sl
+  postgresql
+  reattach-to-user-namespace
+  rlwrap
+  screen
+  sfnt2woff
+  sfnt2woff-zopfli
+  smartmontools
   ssh-copy-id
+  telnet
   terminal-notifier
   the_silver_searcher
+  thefuck
+  tmux
+  tmux-xpanes
   tree
+  vbindiff
   wget
+  woff2
+  zopfli
   zsh
   zsh-completions
 )
 
 brew_install_recipes
+
+ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+
+# Install GNU `sed`, overwriting the built-in `sed`.
+brew install gnu-sed --with-default-names
+
+# Install `wget` with IRI support.
+brew install wget --with-iri
+
+brew install vim --with-override-system-vi
+
+brew install imagemagick --with-webp
 
 # Misc cleanup!
 
@@ -37,7 +86,7 @@ brew_install_recipes
 local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
 # htop
-if [[ "$(type -P $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" || ! "$(($(stat -L -f "%DMp" "$binroot/htop") & 4))" ]]; then
+if [[ "$(type -P $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then
   e_header "Updating htop permissions"
   sudo chown root:wheel "$binroot/htop"
   sudo chmod u+s "$binroot/htop"
