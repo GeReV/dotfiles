@@ -52,7 +52,6 @@ casks=(
   suspicious-package
   webpquicklook
   # Fonts
-  font-m-plus
   font-mplus-nerd-font
   font-mplus-nerd-font-mono
 )

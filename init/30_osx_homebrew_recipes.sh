@@ -22,11 +22,13 @@ recipes=(
   git
   git-lfs
   gmp
+  gnu-sed
   gnupg
   grep
   gs
   htop
   id3tool
+  imagemagick
   jq
   lesspipe
   lua
@@ -59,6 +61,7 @@ recipes=(
   tmux-xpanes
   tree
   vbindiff
+  vim
   wget
   woff2
   zopfli
@@ -69,18 +72,6 @@ recipes=(
 brew_install_recipes
 
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
-
-# Install GNU `sed`, overwriting the built-in `sed`.
-brew install gnu-sed -- --with-default-names
-
-# Install `wget` with IRI support.
-brew install wget -- --with-iri
-
-brew install vim -- --with-override-system-vi
-
-brew install imagemagick -- --with-webp
-
-# Misc cleanup!
 
 # This is where brew stores its binary symlinks
 local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
