@@ -8,6 +8,11 @@ ln -nfs "$DOTFILES/vendor/prezto/runcoms/zlogout" "$HOME/.zlogout"
 ln -nfs "$DOTFILES/vendor/prezto/runcoms/zprofile" "$HOME/.zprofile"
 ln -nfs "$DOTFILES/vendor/prezto/runcoms/zshenv" "$HOME/.zshenv"
 
+# Create override directories.
+mkdir -p $HOME/.zsh.before
+mkdir -p $HOME/.zsh.after
+mkdir -p $HOME/.zsh.prompts
+
 # zsh
 if [[ "$(type -p $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
   e_header "Adding $binroot/zsh to the list of acceptable shells"
