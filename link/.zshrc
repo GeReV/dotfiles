@@ -1,7 +1,15 @@
-source $HOME/.zprezto/runcoms/zshrc
-
 # Where the magic happens.
 export DOTFILES=~/.dotfiles
+
+# Source Prezto.
+if [[ -s "$DOTFILES/vendor/prezto/init.zsh" ]]; then
+  source "$DOTFILES/vendor/prezto/init.zsh"
+fi
+
+autoload bashcompinit
+bashcompinit
+
+source $DOTFILES/vendor/prezto/runcoms/zshrc
 
 # Source all files in "source"
 function src() {
