@@ -450,20 +450,20 @@ EOF
 fi
 
 # Ensure that we can actually, like, compile anything.
-if [[ ! "$(type -P gcc)" ]] && is_osx; then
+if [[ ! "$(type -p gcc)" ]] && is_osx; then
   e_error "XCode or the Command Line Tools for XCode must be installed first."
   exit 1
 fi
 
 # If Git is not installed, install it (Ubuntu only, since Git comes standard
 # with recent XCode or CLT)
-if [[ ! "$(type -P git)" ]] && is_ubuntu; then
+if [[ ! "$(type -p git)" ]] && is_ubuntu; then
   e_header "Installing Git"
   sudo apt-get -qq install git-core
 fi
 
 # If Git isn't installed by now, something exploded. We gots to quit!
-if [[ ! "$(type -P git)" ]]; then
+if [[ ! "$(type -p git)" ]]; then
   e_error "Git should be installed. It isn't. Aborting."
   exit 1
 fi

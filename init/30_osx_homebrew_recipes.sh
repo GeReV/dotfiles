@@ -2,7 +2,7 @@
 is_osx || return 1
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -P brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
+[[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
 # Homebrew recipes
 recipes=(
@@ -77,14 +77,14 @@ ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
 # htop
-if [[ "$(type -P $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then
+if [[ "$(type -p $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then
   e_header "Updating htop permissions"
   sudo chown root:wheel "$binroot/htop"
   sudo chmod u+s "$binroot/htop"
 fi
 
 # bash
-if [[ "$(type -P $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
+if [[ "$(type -p $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
   e_header "Adding $binroot/zsh to the list of acceptable shells"
   echo "$binroot/zsh" | sudo tee -a /etc/shells >/dev/null
 fi

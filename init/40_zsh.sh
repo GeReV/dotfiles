@@ -9,7 +9,7 @@ ln -nfs "$DOTFILES/vendor/prezto/runcoms/zprofile" "$HOME/.zprofile"
 ln -nfs "$DOTFILES/vendor/prezto/runcoms/zshenv" "$HOME/.zshenv"
 
 # zsh
-if [[ "$(type -P $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
+if [[ "$(type -p $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
   e_header "Adding $binroot/zsh to the list of acceptable shells"
   echo "$binroot/zsh" | sudo tee -a /etc/shells >/dev/null
 fi

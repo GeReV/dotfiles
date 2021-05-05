@@ -161,7 +161,7 @@ fi
 
 function other_stuff() {
   # Install Git Extras
-  if [[ ! "$(type -P git-extras)" ]]; then
+  if [[ ! "$(type -p git-extras)" ]]; then
     e_header "Installing Git Extras"
     (
       cd $DOTFILES/vendor/git-extras &&
