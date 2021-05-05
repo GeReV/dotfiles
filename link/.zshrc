@@ -6,9 +6,11 @@ if [[ -s "$DOTFILES/vendor/prezto/init.zsh" ]]; then
   source "$DOTFILES/vendor/prezto/init.zsh"
 fi
 
+# Bash completion compatibility (complete command).
 autoload bashcompinit
 bashcompinit
 
+# Load original Prezto zshrc.
 source $DOTFILES/vendor/prezto/runcoms/zshrc
 
 # Source all files in "source"
