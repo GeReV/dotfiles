@@ -31,7 +31,9 @@ apt_packages+=(
   docker.io
   docker-compose
   git-core
+  gnupg2
   groff
+  grub-customizer
   hollywood
   htop
   id3tool
@@ -42,6 +44,7 @@ apt_packages+=(
   postgresql
   python-pip
   ruby-build
+  software-properties-common
   silversearcher-ag
   telnet
   thefuck
@@ -90,13 +93,8 @@ if is_ubuntu_desktop; then
   apt_source_texts+=("deb http://download.virtualbox.org/virtualbox/debian $release_name contrib")
   apt_packages+=(virtualbox-5.1)
 
-  # http://askubuntu.com/a/190674
-  add_ppa ppa:webupd8team/java
-  apt_packages+=(oracle-java8-installer)
-  function preinstall_oracle-java8-installer() {
-    echo debconf shared/accepted-oracle-license-v1-1 select true | sudo debconf-set-selections
-    echo debconf shared/accepted-oracle-license-v1-1 seen true | sudo debconf-set-selections
-  }
+  add_ppa ppa:linuxuprising/java
+  apt_packages+=(oracle-java15-installer)
 
   # Misc
   apt_packages+=(adb fastboot)
@@ -110,6 +108,7 @@ if is_ubuntu_desktop; then
     network-manager-openconnect-gnome
     openssh-server
     shutter
+    steam
     unity-tweak-tool
     vlc
     xclip
@@ -118,10 +117,6 @@ if is_ubuntu_desktop; then
 
   # Manage online accounts via "gnome-control-center" in launcher
   apt_packages+=(gnome-control-center gnome-online-accounts)
-
-  # https://launchpad.net/grub-customizer
-  add_ppa ppa:danielrichter2007/grub-customizer
-  apt_packages+=(grub-customizer)
 
   # http://www.get-notes.com/linux-download-debian-ubuntu
   apt_packages+=(libqt5concurrent5)
@@ -140,23 +135,6 @@ if is_ubuntu_desktop; then
   # https://discordapp.com/download
   deb_installed+=(/usr/bin/discord)
   deb_sources+=("https://discordapp.com/api/download?platform=linux&format=deb")
-
-  # http://askubuntu.com/questions/854480/how-to-install-the-steam-client/854481#854481
-  apt_packages+=(python-apt)
-  deb_installed+=(/usr/bin/steam)
-  deb_sources+=(deb_source_steam)
-  function deb_source_steam() {
-    local steam_root steam_file
-    steam_root=http://repo.steampowered.com/steam/pool/steam/s/steam/
-    steam_file="$(wget -q -O- "$steam_root?C=M;O=D" | sed -En '/steam-launcher/{s/.*href="([^"]+)".*/\1/;p;q;}')"
-    echo "$steam_root$steam_file"
-  }
-  # https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=772598
-  # apt_packages+=(steam)
-  # function preinstall_steam() {
-  #   echo steam steam/question select I AGREE | sudo debconf-set-selections
-  #   echo steam steam/license note | sudo debconf-set-selections
-  # }
 fi
 
 function other_stuff() {
@@ -170,7 +148,6 @@ function other_stuff() {
   fi
   # Install misc bins from zip file.
   install_from_zip ngrok 'https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip'
-  install_from_zip terraform 'https://releases.hashicorp.com/terraform/0.9.2/terraform_0.9.2_linux_amd64.zip'
 }
 
 ####################
@@ -199,6 +176,8 @@ fi
 # Add APT sources.
 function __temp() { [[ ! -e /etc/apt/sources.list.d/$1.list ]]; }
 source_i=($(array_filter_i apt_source_files __temp))
+
+sudo add-apt-repository multiverse
 
 if (( ${#source_i[@]} > 0 )); then
   e_header "Adding APT sources (${#source_i[@]})"
