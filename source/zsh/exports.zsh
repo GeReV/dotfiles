@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-echo "exports"
-
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
 # Allow 32³ entries; the default is 1000.
