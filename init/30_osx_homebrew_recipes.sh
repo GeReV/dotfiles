@@ -21,6 +21,7 @@ recipes=(
 
   git
   git-lfs
+  git-town
   gmp
   gnu-sed
   gnupg

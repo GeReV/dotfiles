@@ -13,6 +13,9 @@ bashcompinit
 # Load original Prezto zshrc.
 source $DOTFILES/vendor/prezto/runcoms/zshrc
 
+# Load git-town completions
+source $(git-town completions zsh)
+
 # Source all files in "source"
 function src() {
   local file
