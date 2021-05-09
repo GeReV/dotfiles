@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/usr/bin/env zsh
 
 # Enable persistent REPL history for `node`.
 export NODE_REPL_HISTORY=~/.node_history;
@@ -32,3 +32,8 @@ export GPG_TTY=$(tty);
 
 # Hide the “default interactive shell is now zsh” warning on macOS.
 export BASH_SILENCE_DEPRECATION_WARNING=1;
+
+if [ -d "$HOME/Library/Android/sdk" ]; then
+	export ANDROID_HOME=$HOME/Library/Android/sdk
+	export ANDROID_SDK_ROOT=$ANDROID_HOME
+fi
