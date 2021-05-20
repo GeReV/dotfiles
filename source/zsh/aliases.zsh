@@ -47,6 +47,8 @@ if [[ $platform == 'darwin' ]]; then
   # Stuff I never really use but cannot delete either because of http://xkcd.com/530/
   alias stfu="osascript -e 'set volume output muted true'"
   alias pumpitup="osascript -e 'set volume output volume 100'"
+
+  alias ml="m lock"
 fi
 
 # IP addresses
