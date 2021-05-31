@@ -30,6 +30,7 @@ apt_packages+=(
   curl
   docker.io
   docker-compose
+  exa
   git-core
   gnupg2
   groff

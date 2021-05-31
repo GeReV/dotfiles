@@ -19,6 +19,7 @@ recipes=(
   # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
   findutils
 
+  exa
   git
   git-lfs
   git-town
