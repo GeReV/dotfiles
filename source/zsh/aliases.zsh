@@ -84,7 +84,7 @@ alias cls='clear;ls'
 alias df='df -h'
 alias du='du -h -d 2'
 
-alias ll='exa -alh'
+alias ll='exa -alh --color-scale'
 alias ls='exa -F'
 
 # show me files matching "ls grep"
@@ -182,7 +182,7 @@ alias gdmb='git branch --merged | grep -v "\*" | xargs -n 1 git branch -d'
 alias less='less -r'
 alias tf='tail -f'
 alias l='less'
-alias lh='ls -alt | head' # see the last modified files
+alias lh='ls --sort newest | head' # see the last modified files
 alias screen='TERM=screen screen'
 alias cl='clear'
 
