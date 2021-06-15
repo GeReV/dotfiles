@@ -51,6 +51,8 @@ if [[ $platform == 'darwin' ]]; then
   alias ml="m lock"
 fi
 
+alias top="htop"
+
 # IP addresses
 alias ip="dig +short myip.opendns.com @resolver1.opendns.com"
 alias localip="ipconfig getifaddr en0"
