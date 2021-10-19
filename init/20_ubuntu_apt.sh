@@ -32,6 +32,7 @@ apt_packages+=(
   docker.io
   docker-compose
   exa
+  fd-find
   git-core
   gnupg2
   groff
