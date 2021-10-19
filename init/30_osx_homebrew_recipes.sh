@@ -9,6 +9,7 @@ recipes=(
   ack
   android-platform-tools
   awscli
+  bat
 
   # Install GNU core utilities (those that come with macOS are outdated).
   # Don’t forget to add `$(brew --prefix coreutils)/libexec/gnubin` to `$PATH`.
@@ -50,6 +51,7 @@ recipes=(
   postgresql
   reattach-to-user-namespace
   rlwrap
+  ripgrep
   screen
   sfnt2woff
   sfnt2woff-zopfli
@@ -66,6 +68,7 @@ recipes=(
   vim
   wget
   woff2
+  xplr
   zopfli
   zsh
   zsh-completions

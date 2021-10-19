@@ -25,6 +25,7 @@ function add_ppa() {
 
 # Misc.
 apt_packages+=(
+  bat
   build-essential
   cowsay
   curl
@@ -44,6 +45,7 @@ apt_packages+=(
   nmap
   postgresql
   python-pip
+  ripgrep
   ruby-build
   software-properties-common
   silversearcher-ag
