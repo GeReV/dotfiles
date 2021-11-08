@@ -1,6 +1,7 @@
 [submodule "rbenv"]
   path = vendor/rbenv
-  url = https://github.com/sstephenson/rbenv.git
+	url = https://github.com/rbenv/rbenv.git
+	branch = v1.2.0
 [submodule ".tmux"]
   path = vendor/.tmux
   url = https://github.com/gpakosz/.tmux.git
@@ -9,16 +10,16 @@
   url = https://github.com/tmux-plugins/tpm.git
 [submodule "rbenv-vars"]
   path = link/.rbenv/plugins/rbenv-vars
-  url = https://github.com/sstephenson/rbenv-vars.git
+  url = https://github.com/rbenv/rbenv-vars.git
 [submodule "ruby-build"]
   path = link/.rbenv/plugins/ruby-build
-  url = https://github.com/sstephenson/ruby-build.git
+  url = https://github.com/rbenv/ruby-build.git
 [submodule "rbenv-default-gems"]
   path = link/.rbenv/plugins/rbenv-default-gems
-  url = https://github.com/sstephenson/rbenv-default-gems.git
+  url = https://github.com/rbenv/rbenv-default-gems.git
 [submodule "rbenv-gem-rehash"]
   path = link/.rbenv/plugins/rbenv-gem-rehash
-  url = https://github.com/sstephenson/rbenv-gem-rehash.git
+  url = https://github.com/rbenv/rbenv-gem-rehash.git
 [submodule "rbenv-whatis"]
   path = link/.rbenv/plugins/rbenv-whatis
   url = https://github.com/rkh/rbenv-whatis.git
