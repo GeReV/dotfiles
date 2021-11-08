@@ -20,6 +20,7 @@ recipes=(
   # Install GNU `find`, `locate`, `updatedb`, and `xargs`, `g`-prefixed.
   findutils
 
+  fnm
   fd
   exa
   git
