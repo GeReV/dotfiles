@@ -70,6 +70,7 @@ recipes=(
   vim
   wget
   woff2
+  xh
   xplr
   zopfli
   zsh

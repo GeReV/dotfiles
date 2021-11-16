@@ -55,6 +55,7 @@ apt_packages+=(
   tree
   vim
   vim-gnome
+  xh
   zsh
 )
 
