@@ -9,6 +9,9 @@
 LICENSE*
 README.md
 test/
+config/
+conf/
+bin/
 com.googlecode.iterm2.plist
 
 # Ignore non-macOS files.
