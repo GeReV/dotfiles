@@ -3,7 +3,7 @@
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
 # OSX-only stuff. Abort if not OSX.
-is_osx || exit 1
+is_osx || exit 0
 
 # Exit if Homebrew is not installed.
 [[ ! "$(type -p brew)" ]] && e_error "Brew casks need Homebrew to install." && exit 1

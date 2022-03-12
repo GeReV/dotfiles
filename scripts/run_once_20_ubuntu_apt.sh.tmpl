@@ -3,7 +3,7 @@
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
 # Ubuntu-only stuff. Abort if not Ubuntu.
-is_ubuntu || return 1
+is_ubuntu || exit 0
 
 apt_keys=()
 apt_source_files=()
