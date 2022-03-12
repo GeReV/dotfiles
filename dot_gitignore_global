@@ -1,3 +1,7 @@
+# ~/.gitignore_global
+# =============================================================================
+# Used by Git to determine the files and directories to ignore globally.
+
 # Compiled source #
 ###################
 *.class
@@ -58,3 +62,14 @@ Desktop.ini
 .swo
 .*.swp
 .*.swo
+
+# Python
+__pycache__/
+*.pyc
+venv/
+
+# Git
+.git/
+
+# Jetbrains IDEs
+.idea/
