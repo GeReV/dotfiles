@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+source 00_common.sh
+
 ln -nfs "$DOTFILES/vendor/prezto" "${ZDOTDIR:-$HOME}/.zprezto"
 
 ln -nfs "$DOTFILES/vendor/prezto/runcoms/zlogin" "$HOME/.zlogin"
