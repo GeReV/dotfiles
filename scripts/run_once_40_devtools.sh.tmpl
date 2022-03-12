@@ -9,9 +9,9 @@ command -v git >/dev/null 2>&1 || {
     exit 1
 }
 
-# Install ASDF Versionn Manager
+# Install ASDF Version Manager
 # https://asdf-vm.com/
-if ! command -v brew > /dev/null;; then
+if ! command -v brew > /dev/null; then
     e_arrow "Installing/updating ASDF Extendable Version Manager...\n"
     export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
         ASDF_NEW=false
