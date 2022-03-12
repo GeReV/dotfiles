@@ -123,3 +123,4 @@ function __array_join() {
     fi
   done
   [[ "$__out__" ]] && echo "$__out__"
+}
