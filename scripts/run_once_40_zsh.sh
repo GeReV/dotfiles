@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source 00_common.sh
+source "../source/00_common.sh"
 
 ln -nfs "$DOTFILES/vendor/prezto" "${ZDOTDIR:-$HOME}/.zprezto"
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source 00_common.sh
+source "../source/00_common.sh"
 
 # OSX-only stuff. Abort if not OSX.
 is_osx || return 1

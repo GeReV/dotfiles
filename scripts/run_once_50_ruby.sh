@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source 00_common.sh
+source "../source/00_common.sh"
 
 # Initialize rbenv.
 source $DOTFILES/source/50_ruby.sh
