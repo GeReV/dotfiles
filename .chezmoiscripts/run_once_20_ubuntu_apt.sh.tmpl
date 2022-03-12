@@ -5,8 +5,6 @@ source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || exit 0
 
-echo "installing"
-
 apt_keys=()
 apt_source_files=()
 apt_source_texts=()
@@ -153,6 +151,8 @@ fi
 ####################
 
 # Add APT keys.
+mkdir -p {{ .chezmoi.sourceDir }}/caches/init
+
 keys_cache={{ .chezmoi.sourceDir }}/caches/init/apt_keys
 IFS=$'\n' GLOBIGNORE='*' command eval 'setdiff_cur=($(<$keys_cache))'
 setdiff_new=("${apt_keys[@]}"); setdiff; apt_keys=("${setdiff_out[@]}")
