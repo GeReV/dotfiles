@@ -13,7 +13,7 @@ command -v git >/dev/null 2>&1 || {
 # https://asdf-vm.com/
 if ! command -v brew > /dev/null; then
     e_arrow "Installing/updating ASDF Extendable Version Manager...\n"
-    export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
+    export ASDF_DIR="${ASDF_DIR:-{{ .chezmoi.homeDir }}/.asdf}" && (
         ASDF_NEW=false
         if [ ! -d "$ASDF_DIR" ]; then
             git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR"
@@ -35,15 +35,12 @@ asdf plugin add python
 asdf plugin add ruby
 asdf plugin update --all
 
-e_arrow "Importing PGP keyrings for ASDF plugins...\n"
-"$HOME"/.asdf/plugins/nodejs/bin/import-release-team-keyring
-
 # asdf install golang latest
 asdf install nodejs latest
 
 # Install NVM
 e_arrow "Installing/updating Node Version Manager...\n"
-export NVM_DIR="$HOME/.nvm" && (
+export NVM_DIR="{{ .chezmoi.homeDir }}/.nvm" && (
     NVM_NEW=false
     if [ ! -d "$NVM_DIR" ]; then
         git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"

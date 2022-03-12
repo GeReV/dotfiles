@@ -2,15 +2,15 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
-ln -nfs "~/.zprezto/runcoms/zlogin" "$HOME/.zlogin"
-ln -nfs "~/.zprezto/runcoms/zlogout" "$HOME/.zlogout"
-ln -nfs "~/.zprezto/runcoms/zprofile" "$HOME/.zprofile"
-ln -nfs "~/.zprezto/runcoms/zshenv" "$HOME/.zshenv"
+ln -nfs "~/.zprezto/runcoms/zlogin" "{{ .chezmoi.homeDir }}/.zlogin"
+ln -nfs "~/.zprezto/runcoms/zlogout" "{{ .chezmoi.homeDir }}/.zlogout"
+ln -nfs "~/.zprezto/runcoms/zprofile" "{{ .chezmoi.homeDir }}/.zprofile"
+ln -nfs "~/.zprezto/runcoms/zshenv" "{{ .chezmoi.homeDir }}/.zshenv"
 
 # Create override directories.
-mkdir -p $HOME/.zsh.before
-mkdir -p $HOME/.zsh.after
-mkdir -p $HOME/.zsh.prompts
+mkdir -p {{ .chezmoi.homeDir }}/.zsh.before
+mkdir -p {{ .chezmoi.homeDir }}/.zsh.after
+mkdir -p {{ .chezmoi.homeDir }}/.zsh.prompts
 
 # zsh
 if is_osx; then
