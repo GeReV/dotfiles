@@ -2,6 +2,8 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
+echo $0
+
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || exit 0
 
