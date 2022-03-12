@@ -1,9 +1,10 @@
 #!/usr/bin/env bash
 
-source "../source/00_common.sh"
+source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
 # Initialize rbenv.
-source $DOTFILES/source/50_ruby.sh
+source "{{ .chezmoi.sourceDir }}/source/50_ruby.sh"
+
 
 # Install Ruby.
 if [[ "$(type -p rbenv)" ]]; then

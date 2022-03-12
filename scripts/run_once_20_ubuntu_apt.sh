@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source "../source/00_common.sh"
+source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || return 1

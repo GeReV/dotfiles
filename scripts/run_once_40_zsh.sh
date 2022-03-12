@@ -1,13 +1,11 @@
 #!/usr/bin/env bash
 
-source "../source/00_common.sh"
+source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
-ln -nfs "$DOTFILES/vendor/prezto" "${ZDOTDIR:-$HOME}/.zprezto"
-
-ln -nfs "$DOTFILES/vendor/prezto/runcoms/zlogin" "$HOME/.zlogin"
-ln -nfs "$DOTFILES/vendor/prezto/runcoms/zlogout" "$HOME/.zlogout"
-ln -nfs "$DOTFILES/vendor/prezto/runcoms/zprofile" "$HOME/.zprofile"
-ln -nfs "$DOTFILES/vendor/prezto/runcoms/zshenv" "$HOME/.zshenv"
+ln -nfs "~/.zprezto/runcoms/zlogin" "$HOME/.zlogin"
+ln -nfs "~/.zprezto/runcoms/zlogout" "$HOME/.zlogout"
+ln -nfs "~/.zprezto/runcoms/zprofile" "$HOME/.zprofile"
+ln -nfs "~/.zprezto/runcoms/zshenv" "$HOME/.zshenv"
 
 # Create override directories.
 mkdir -p $HOME/.zsh.before
