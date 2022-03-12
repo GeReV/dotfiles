@@ -2,10 +2,10 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
-echo $0
-
 # Ubuntu-only stuff. Abort if not Ubuntu.
 is_ubuntu || exit 0
+
+echo "installing"
 
 apt_keys=()
 apt_source_files=()
