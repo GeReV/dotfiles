@@ -11,12 +11,4 @@ README.md
 test/
 caches/
 config/
-conf/
-bin/
 com.googlecode.iterm2.plist
-
-# Ignore non-macOS files.
-{{ if ne .chezmoi.os "darwin" -}}
-dot_config/iterm
-dot_Brewfile
-{{- end }}

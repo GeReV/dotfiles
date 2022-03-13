@@ -2,6 +2,9 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
+# Initialize rbenv.
+source "{{ .chezmoi.sourceDir }}/source/50_ruby.sh"
+
 e_header "Setting up development tools:"
 
 command -v git >/dev/null 2>&1 || {
@@ -33,6 +36,7 @@ asdf plugin add golang
 asdf plugin add nodejs
 asdf plugin add python
 asdf plugin add ruby
+asdf plugin add rust
 asdf plugin update --all
 
 # asdf install golang latest
@@ -57,5 +61,20 @@ export NVM_DIR="{{ .chezmoi.homeDir }}/.nvm" && (
 # Install Node.js
 e_arrow "Installing/updating Node.js...\n"
 nvm install node
+
+# Install Ruby.
+if [[ "$(type -p rbenv)" ]]; then
+  versions=(2.4.0)
+
+  rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))
+  if (( ${#rubies[@]} > 0 )); then
+    e_arrow "Installing Ruby versions: ${rubies[*]}"
+    for r in "${rubies[@]}"; do
+      rbenv install "$r"
+      [[ "$r" == "${versions[0]}" ]] && rbenv global "$r"
+    done
+  fi
+fi
+
 
 e_success "Done.\n\n"
