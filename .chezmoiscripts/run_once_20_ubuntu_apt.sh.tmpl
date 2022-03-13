@@ -60,9 +60,6 @@ apt_packages+=(
   zsh
 )
 
-apt_packages+=(vim)
-is_ubuntu_desktop && apt_packages+=(vim-gnome)
-
 # https://github.com/neovim/neovim/wiki/Installing-Neovim
 add_ppa ppa:neovim-ppa/stable
 apt_packages+=(neovim)
@@ -72,9 +69,6 @@ apt_packages+=(
   autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
   libncurses5-dev libffi-dev libgdbm-dev zlib1g-dev
 )
-
-# https://launchpad.net/~hnakamur/+archive/ubuntu/tmux
-add_ppa ppa:hnakamur/tmux
 
 add_ppa ppa:shutter/ppa
 
@@ -92,7 +86,7 @@ if is_ubuntu_desktop; then
   apt_packages+=(charles-proxy)
 
   add_ppa ppa:linuxuprising/java
-  apt_packages+=(oracle-java15-installer)
+  apt_packages+=(oracle-java17-installer)
 
   # Misc
   apt_packages+=(adb fastboot)
