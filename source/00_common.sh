@@ -9,7 +9,9 @@ function is_osx() {
   [[ "$OSTYPE" =~ ^darwin ]] || return 1
 }
 function is_ubuntu() {
-  [[ "$(cat /etc/issue 2> /dev/null)" =~ Ubuntu|Raspbian ]] || return 1
+  local iss
+  iss=$(cat /etc/issue 2> /dev/null)
+  [[ "${iss#*Ubuntu}" != "$iss" || "${iss#*Raspbian}" != "$iss" ]] || return 1
 }
 function is_ubuntu_desktop() {
   dpkg -l ubuntu-desktop >/dev/null 2>&1 || return 1
