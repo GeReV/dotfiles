@@ -7,4 +7,7 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
     name = "{{ $name }}"
 [diff]
     exclude = ["scripts"]
-
+{{ if eq .chezmoi.os "linux" }}
+[git]
+    command = "/usr/bin/git"
+{{ end }}
