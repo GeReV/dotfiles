@@ -127,11 +127,6 @@ if is_ubuntu_desktop; then
   # Manage online accounts via "gnome-control-center" in launcher
   apt_packages+=(gnome-control-center gnome-online-accounts)
 
-  # http://www.get-notes.com/linux-download-debian-ubuntu
-  apt_packages+=(libqt5concurrent5)
-  deb_installed+=(/usr/bin/notes)
-  deb_sources+=("https://github.com/nuttyartist/notes/releases/download/v1.0.0/notes_1.0.0_amd64-$release_name.deb")
-
   # http://askubuntu.com/a/852727
   apt_packages+=(cabextract)
   deb_installed+=(/usr/share/fonts/truetype/msttcorefonts)
