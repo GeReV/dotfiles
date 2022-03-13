@@ -49,7 +49,6 @@ apt_packages+=(
   mercurial
   nmap
   postgresql
-  python-pip
   ripgrep
   ruby-build
   software-properties-common
@@ -58,8 +57,6 @@ apt_packages+=(
   thefuck
   tree
   vim
-  vim-gnome
-  xh
   zsh
 )
 
@@ -73,15 +70,13 @@ apt_packages+=(neovim)
 # https://github.com/rbenv/ruby-build/wiki
 apt_packages+=(
   autoconf bison build-essential libssl-dev libyaml-dev libreadline6-dev
-  libncurses5-dev libffi-dev libgdbm3 libgdbm-dev zlib1g-dev
+  libncurses5-dev libffi-dev libgdbm-dev zlib1g-dev
 )
 
 # https://launchpad.net/~hnakamur/+archive/ubuntu/tmux
 add_ppa ppa:hnakamur/tmux
 
-# https://github.com/greymd/tmux-xpanes
-add_ppa ppa:greymd/tmux-xpanes
-apt_packages+=(tmux-xpanes)
+add_ppa ppa:shutter/ppa
 
 if is_ubuntu_desktop; then
   # https://www.ubuntuupdates.org/ppa/google_chrome
@@ -96,12 +91,6 @@ if is_ubuntu_desktop; then
   apt_source_texts+=("deb https://www.charlesproxy.com/packages/apt/ charles-proxy3 main")
   apt_packages+=(charles-proxy)
 
-  # https://tecadmin.net/install-oracle-virtualbox-on-ubuntu/
-  apt_keys+=(https://www.virtualbox.org/download/oracle_vbox_2016.asc)
-  apt_source_files+=(virtualbox)
-  apt_source_texts+=("deb http://download.virtualbox.org/virtualbox/debian $release_name contrib")
-  apt_packages+=(virtualbox-5.1)
-
   add_ppa ppa:linuxuprising/java
   apt_packages+=(oracle-java15-installer)
 
@@ -110,7 +99,6 @@ if is_ubuntu_desktop; then
   apt_packages+=(
     chromium-browser
     fonts-mplus
-    gnome-tweak-tool
     k4dirstat
     rofi
     network-manager-openconnect
@@ -121,7 +109,6 @@ if is_ubuntu_desktop; then
     unity-tweak-tool
     vlc
     xclip
-    zenmap
   )
 
   # Manage online accounts via "gnome-control-center" in launcher
