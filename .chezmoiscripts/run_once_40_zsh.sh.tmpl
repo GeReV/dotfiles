@@ -2,7 +2,7 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "{{ .chezmoi.homeDir }}/.zprezto"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "{{ .chezmoi.homeDir }}/.zprezto" || true
 
 ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zlogin" "{{ .chezmoi.homeDir }}/.zlogin"
 ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zlogout" "{{ .chezmoi.homeDir }}/.zlogout"
