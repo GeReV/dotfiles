@@ -2,6 +2,8 @@
 
 source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
 ln -nfs "~/.zprezto/runcoms/zlogin" "{{ .chezmoi.homeDir }}/.zlogin"
 ln -nfs "~/.zprezto/runcoms/zlogout" "{{ .chezmoi.homeDir }}/.zlogout"
 ln -nfs "~/.zprezto/runcoms/zprofile" "{{ .chezmoi.homeDir }}/.zprofile"
