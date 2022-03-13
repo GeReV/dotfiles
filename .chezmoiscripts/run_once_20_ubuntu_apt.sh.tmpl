@@ -142,6 +142,7 @@ if is_ubuntu_desktop; then
   }
 
   # https://discordapp.com/download
+  alt_packages+=(libgconf-2-4 libappindicator1 libc++1)
   deb_installed+=(/usr/bin/discord)
   deb_sources+=("https://discordapp.com/api/download?platform=linux&format=deb")
 fi
