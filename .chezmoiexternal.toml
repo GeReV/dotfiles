@@ -4,3 +4,5 @@
     refreshPeriod = "168h"
     [".zprezto".clone]
         args = ["--recursive"]
+    [".zprezto".pull]
+        args = ["--recurse-submodules"]
