@@ -207,3 +207,6 @@ if (( ${#deb_installed_i[@]} > 0 )); then
     sudo dpkg -i "$installer_file"
   done
 fi
+
+# Rehash
+hash -r
