@@ -24,7 +24,7 @@ For a complete setup, including `chezmoi`:
 ### Ubuntu
 
 ```sh
-sh -c "$(wget -q0- chezmoi.io/get)" -- init --apply -S ~/.dotfiles https://github.com/gerev/dotfiles.git
+sh -c "$(wget -qO- chezmoi.io/get)" -- init --apply -S ~/.dotfiles https://github.com/gerev/dotfiles.git
 ```
 
 ### macOS
