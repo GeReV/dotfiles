@@ -171,7 +171,7 @@ fi
 
 # Update APT.
 e_header "Updating APT"
-sudo apt -qq update
+sudo apt -qy update
 
 # Only do a dist-upgrade on initial install, otherwise do an upgrade.
 e_header "Upgrading APT"
@@ -186,7 +186,7 @@ if (( ${#apt_packages[@]} > 0 )); then
   for package in "${apt_packages[@]}"; do
     e_arrow "$package"
     [[ "$(type -t preinstall_$package)" == function ]] && preinstall_$package
-    sudo apt -qq install "$package" && \
+    sudo apt -y install "$package" && \
     [[ "$(type -t postinstall_$package)" == function ]] && postinstall_$package
   done
 fi
