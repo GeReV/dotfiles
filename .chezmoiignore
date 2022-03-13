@@ -11,4 +11,5 @@ README.md
 test/
 caches/
 config/
+source/
 com.googlecode.iterm2.plist
