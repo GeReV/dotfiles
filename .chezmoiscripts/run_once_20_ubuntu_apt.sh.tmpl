@@ -142,7 +142,7 @@ if is_ubuntu_desktop; then
   }
 
   # https://discordapp.com/download
-  alt_packages+=(libgconf-2-4 libappindicator1 libc++1)
+  apt_packages+=(libgconf-2-4 libappindicator1 libc++1)
   deb_installed+=(/usr/bin/discord)
   deb_sources+=("https://discordapp.com/api/download?platform=linux&format=deb")
 fi
@@ -199,11 +199,7 @@ sudo apt-get -qq update
 
 # Only do a dist-upgrade on initial install, otherwise do an upgrade.
 e_header "Upgrading APT"
-if is_dotfiles_bin; then
-  sudo apt-get -qy upgrade
-else
-  sudo apt-get -qy dist-upgrade
-fi
+sudo apt-get -qy upgrade
 
 # Install APT packages.
 installed_apt_packages="$(dpkg --get-selections | grep -v deinstall | awk 'BEGIN{FS="[\t:]"}{print $1}' | uniq)"
