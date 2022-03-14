@@ -97,7 +97,7 @@ recipes=(
 
 brew_install_recipes
 
-ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
+ln -fs "${HOMEBREW_PREFIX}/bin/gsha256sum" "${HOMEBREW_PREFIX}/bin/sha256sum"
 
 # This is where brew stores its binary symlinks
 binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
