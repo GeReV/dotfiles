@@ -8,10 +8,22 @@ is_osx || exit 0
 # Exit if Homebrew is not installed.
 [[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && exit 1
 
+# Install Homebrew recipes.
+function brew_install_recipes() {
+  recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
+  if (( ${#recipes[@]} > 0 )); then
+    e_header "Installing Homebrew recipes: ${recipes[*]}"
+    for recipe in "${recipes[@]}"; do
+      brew install $recipe
+    done
+  fi
+}
+
 # Homebrew recipes
 recipes=(
   ack
   android-platform-tools
+  asdf
   awscli
   bat
 
@@ -86,7 +98,7 @@ brew_install_recipes
 ln -s "${BREW_PREFIX}/bin/gsha256sum" "${BREW_PREFIX}/bin/sha256sum"
 
 # This is where brew stores its binary symlinks
-local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
+binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
 # htop
 if [[ "$(type -p $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then
