@@ -5,6 +5,8 @@ source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
 # OSX-only stuff. Abort if not OSX.
 is_osx || exit 0
 
+eval "$(/opt/homebrew/bin/brew shellenv)"
+
 # Exit if Homebrew is not installed.
 [[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && exit 1
 
