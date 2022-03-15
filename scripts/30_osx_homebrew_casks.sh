@@ -20,6 +20,7 @@ brew cask info this-is-somewhat-annoying 2>/dev/null
 casks=(
   # Applications
   alfred
+  alt-tab
   android-platform-tools
   chromium
   docker
