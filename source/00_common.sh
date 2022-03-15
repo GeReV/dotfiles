@@ -41,10 +41,9 @@ function setdiff() {
   local debug skip a b
   if [[ "$1" == 1 ]]; then debug=1; shift; fi
   if [[ "$1" ]]; then
-    local setdiff_new setdiff_cur
+    local setdiff_new setdiff_cur setdiff_out
     setdiff_new=($1); setdiff_cur=($2)
   fi
-  local setdiff_out
   setdiff_out=()
   for a in "${setdiff_new[@]}"; do
     skip=
