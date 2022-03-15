@@ -123,9 +123,9 @@ fi
 ####################
 
 # Add APT keys.
-mkdir -p {{ .chezmoi.sourceDir }}/caches/init
+mkdir -p $SOURCE_DIR/caches/init
 
-keys_cache={{ .chezmoi.sourceDir }}/caches/init/apt_keys
+keys_cache=$SOURCE_DIR/caches/init/apt_keys
 IFS=$'\n' GLOBIGNORE='*' command eval 'setdiff_cur=($(<$keys_cache))'
 setdiff_new=("${apt_keys[@]}"); setdiff; apt_keys=("${setdiff_out[@]}")
 unset setdiff_new setdiff_cur setdiff_out
