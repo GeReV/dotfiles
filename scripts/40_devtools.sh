@@ -1,9 +1,5 @@
-#!/usr/bin/env bash
-
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
 # Initialize rbenv.
-source "{{ .chezmoi.sourceDir }}/source/50_ruby.sh"
+source "$SOURCE_DIR/source/50_ruby.sh"
 
 e_header "Setting up development tools:"
 
@@ -16,7 +12,7 @@ command -v git >/dev/null 2>&1 || {
 # https://asdf-vm.com/
 if ! command -v brew > /dev/null; then
     e_arrow "Installing/updating ASDF Extendable Version Manager...\n"
-    export ASDF_DIR="${ASDF_DIR:-{{ .chezmoi.homeDir }}/.asdf}" && (
+    export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
         ASDF_NEW=false
         if [ ! -d "$ASDF_DIR" ]; then
             git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR"
@@ -44,7 +40,7 @@ asdf install nodejs latest
 
 # Install NVM
 e_arrow "Installing/updating Node Version Manager...\n"
-export NVM_DIR="{{ .chezmoi.homeDir }}/.nvm" && (
+export NVM_DIR="$HOME/.nvm" && (
     NVM_NEW=false
     if [ ! -d "$NVM_DIR" ]; then
         git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"

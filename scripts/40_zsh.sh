@@ -1,24 +1,20 @@
-#!/usr/bin/env bash
+rm -rf "$HOME/.zprezto"
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto"
 
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
-rm -rf "{{ .chezmoi.homeDir }}/.zprezto"
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "{{ .chezmoi.homeDir }}/.zprezto"
-
-ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zlogin" "{{ .chezmoi.homeDir }}/.zlogin"
-ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zlogout" "{{ .chezmoi.homeDir }}/.zlogout"
-ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zprofile" "{{ .chezmoi.homeDir }}/.zprofile"
-ln -nfs "{{ .chezmoi.homeDir }}/.zprezto/runcoms/zshenv" "{{ .chezmoi.homeDir }}/.zshenv"
+ln -nfs "$HOME/.zprezto/runcoms/zlogin" "$HOME/.zlogin"
+ln -nfs "$HOME/.zprezto/runcoms/zlogout" "$HOME/.zlogout"
+ln -nfs "$HOME/.zprezto/runcoms/zprofile" "$HOME/.zprofile"
+ln -nfs "$HOME/.zprezto/runcoms/zshenv" "$HOME/.zshenv"
 
 # Create override directories.
-mkdir -p {{ .chezmoi.homeDir }}/.zsh.before
-mkdir -p {{ .chezmoi.homeDir }}/.zsh.after
-mkdir -p {{ .chezmoi.homeDir }}/.zsh.prompts
+mkdir -p $HOME/.zsh.before
+mkdir -p $HOME/.zsh.after
+mkdir -p $HOME/.zsh.prompts
 
 # zsh
 if is_osx; then
     # This is where brew stores its binary symlinks
-    binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
+    local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
     if [[ "$(type -p $binroot/zsh)" && "$(cat /etc/shells | grep -q "$binroot/zsh")" ]]; then
       e_header "Adding $binroot/zsh to the list of acceptable shells"

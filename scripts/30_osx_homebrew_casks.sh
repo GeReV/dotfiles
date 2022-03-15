@@ -1,25 +1,8 @@
-#!/usr/bin/env bash
-
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
 # OSX-only stuff. Abort if not OSX.
-is_osx || exit 0
-
-eval "$(/opt/homebrew/bin/brew shellenv)"
+is_osx || return 1
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -p brew)" ]] && e_error "Brew casks need Homebrew to install." && exit 1
-
-# Tap Homebrew kegs.
-function brew_tap_kegs() {
-  kegs=($(setdiff "${kegs[*]}" "$(brew tap)"))
-  if (( ${#kegs[@]} > 0 )); then
-    e_header "Tapping Homebrew kegs: ${kegs[*]}"
-    for keg in "${kegs[@]}"; do
-      brew tap $keg
-    done
-  fi
-}
+[[ ! "$(type -p brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
 
 # Ensure the cask kegs are installed.
 kegs=(
@@ -49,12 +32,11 @@ casks=(
   karabiner-elements
   licecap
   macvim
-  moom
   ngrok
   numi
+  rectangle
   slack
   steam
-  virtualbox
   visual-studio-code
   vlc
   xscreensaver

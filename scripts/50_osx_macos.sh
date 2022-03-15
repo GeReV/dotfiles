@@ -1,9 +1,5 @@
-#!/usr/bin/env bash
-
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
 # OSX-only stuff. Abort if not OSX.
-is_osx || exit 0
+is_osx || return 1
 
 # ~/.macos — https://mths.be/macos
 
@@ -234,7 +230,7 @@ defaults write com.apple.screensaver askForPassword -int 1
 defaults write com.apple.screensaver askForPasswordDelay -int 0
 
 # Save screenshots to the desktop
-defaults write com.apple.screencapture location -string "{{ .chezmoi.homeDir }}/Desktop"
+defaults write com.apple.screencapture location -string "$HOME/Desktop"
 
 # Save screenshots in PNG format (other options: BMP, GIF, JPG, PDF, TIFF)
 defaults write com.apple.screencapture type -string "png"
@@ -262,7 +258,7 @@ defaults write com.apple.finder DisableAllAnimations -bool true
 # Set Desktop as the default location for new Finder windows
 # For other paths, use `PfLo` and `file:///full/path/here/`
 defaults write com.apple.finder NewWindowTarget -string "PfDe"
-defaults write com.apple.finder NewWindowTargetPath -string "file://{{ .chezmoi.homeDir }}/Desktop/"
+defaults write com.apple.finder NewWindowTargetPath -string "file://$HOME/Desktop/"
 
 # Show icons for hard drives, servers, and removable media on the desktop
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool true
@@ -431,7 +427,7 @@ defaults write com.apple.dock show-recents -bool false
 #defaults write com.apple.dock showLaunchpadGestureEnabled -int 0
 
 # Reset Launchpad, but keep the desktop wallpaper intact
-find "{{ .chezmoi.homeDir }}/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
+find "$HOME/Library/Application Support/Dock" -name "*-*.db" -maxdepth 1 -delete
 
 # Add iOS & Watch Simulator to Launchpad
 #sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Applications/Simulator.app" "/Applications/Simulator.app"
@@ -650,7 +646,7 @@ tell application "Terminal"
 	(* Open the custom theme so that it gets added to the list
 	   of available terminal themes (note: this will open two
 	   additional terminal windows). *)
-	do shell script "open '{{ .chezmoi.homeDir }}/init/" & themeName & ".terminal'"
+	do shell script "open '$HOME/init/" & themeName & ".terminal'"
 
 	(* Wait a little bit to ensure that the custom theme is added. *)
 	delay 1
@@ -868,7 +864,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 
 ## Use `~/Documents/Torrents` to store incomplete downloads
 #defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-#defaults write org.m0k.transmission IncompleteDownloadFolder -string "{{ .chezmoi.homeDir }}/Documents/Torrents"
+#defaults write org.m0k.transmission IncompleteDownloadFolder -string "$HOME/Documents/Torrents"
 #
 ## Use `~/Downloads` to store completed downloads
 #defaults write org.m0k.transmission DownloadLocationConstant -bool true

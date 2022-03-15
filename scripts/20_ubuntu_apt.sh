@@ -1,9 +1,5 @@
-#!/usr/bin/env bash
-
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
 # Ubuntu-only stuff. Abort if not Ubuntu.
-is_ubuntu || exit 0
+is_ubuntu || return 1
 
 apt_keys=()
 apt_source_files=()
@@ -12,7 +8,7 @@ apt_packages=()
 deb_installed=()
 deb_sources=()
 
-installers_path="{{ .chezmoi.sourceDir }}/caches/installers"
+installers_path="$SOURCE_DIR/caches/installers"
 
 # Ubuntu distro release name, eg. "xenial"
 release_name=$(lsb_release -c | awk '{print $2}')

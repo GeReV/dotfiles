@@ -1,25 +1,10 @@
-#!/usr/bin/env bash
-
-source "{{ .chezmoi.sourceDir }}/source/00_common.sh"
-
 # OSX-only stuff. Abort if not OSX.
-is_osx || exit 0
+is_osx || return 1
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && exit 1
-
-# Install Homebrew recipes.
-function brew_install_recipes() {
-  recipes=($(setdiff "${recipes[*]}" "$(brew list)"))
-  if (( ${#recipes[@]} > 0 )); then
-    e_header "Installing Homebrew recipes: ${recipes[*]}"
-    for recipe in "${recipes[@]}"; do
-      brew install $recipe
-    done
-  fi
-}
+[[ ! "$(type -p brew)" ]] && e_error "Brew recipes need Homebrew to install." && return 1
 
 # Homebrew recipes
 recipes=(
@@ -100,7 +85,7 @@ brew_install_recipes
 ln -fs "${HOMEBREW_PREFIX}/bin/gsha256sum" "${HOMEBREW_PREFIX}/bin/sha256sum"
 
 # This is where brew stores its binary symlinks
-binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
+local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
 # htop
 if [[ "$(type -p $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then
