@@ -1,5 +1,5 @@
 # Ubuntu-only stuff. Abort if not Ubuntu.
-is_ubuntu || return 1
+is_ubuntu || return 0
 
 apt_keys=()
 apt_source_files=()

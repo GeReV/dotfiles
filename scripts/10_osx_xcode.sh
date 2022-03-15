@@ -1,5 +1,5 @@
 # OSX-only stuff. Abort if not OSX.
-is_osx || return 1
+is_osx || return 0
 
 # Some tools look for XCode, even though they don't need it.
 # https://github.com/cowboy/dotfiles#os-x-notes
