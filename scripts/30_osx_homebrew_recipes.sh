@@ -85,7 +85,7 @@ brew_install_recipes
 ln -fs "${HOMEBREW_PREFIX}/bin/gsha256sum" "${HOMEBREW_PREFIX}/bin/sha256sum"
 
 # This is where brew stores its binary symlinks
-local binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
+binroot="$(brew --config | awk '/HOMEBREW_PREFIX/ {print $2}')"/bin
 
 # htop
 if [[ "$(type -p $binroot/htop)" ]] && [[ "$(stat -L -f "%Su:%Sg" "$binroot/htop")" != "root:wheel" ]]; then

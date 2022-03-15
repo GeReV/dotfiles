@@ -14,7 +14,7 @@ kegs=(
 brew_tap_kegs
 
 # Hack to show the first-run brew-cask password prompt immediately.
-brew cask info this-is-somewhat-annoying 2>/dev/null
+brew info this-is-somewhat-annoying 2>/dev/null || true
 
 # Homebrew casks
 casks=(
