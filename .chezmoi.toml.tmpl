@@ -1,10 +1,12 @@
+{{- $name := promptString "Git name for the author/committer" "Amir Grozki" }}
 {{- $email := promptString "Git email address for the author/committer" }}
-{{- $name := promptString "Git username for the author/committer" }}
+{{- $github_user := promptString "GitHub username" "GeReV" }}
 
 sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 [data]
     email = "{{ $email }}"
     name = "{{ $name }}"
+    github_user = "{{ $github_user }}"
 [diff]
     exclude = ["scripts"]
 {{ if eq .chezmoi.os "linux" }}
