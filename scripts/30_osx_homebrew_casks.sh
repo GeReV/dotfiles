@@ -23,6 +23,7 @@ casks=(
   alt-tab
   android-platform-tools
   chromium
+  discord
   docker
   firefox
   gimp
