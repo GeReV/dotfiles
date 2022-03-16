@@ -25,6 +25,7 @@ casks=(
   chromium
   discord
   docker
+  ferdi
   firefox
   gimp
   google-chrome
