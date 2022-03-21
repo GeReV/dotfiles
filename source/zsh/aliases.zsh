@@ -9,6 +9,39 @@ elif [[ $unamestr == 'Darwin' ]]; then
   platform='darwin'
 fi
 
+# Check for various OS openers. Quit as soon as we find one that works.
+for opener in browser-exec xdg-open cmd.exe cygstart "start" open; do
+	if command -v $opener >/dev/null 2>&1; then
+		if [[ "$opener" == "cmd.exe" ]]; then
+			# shellcheck disable=SC2139
+			alias open="$opener /c start";
+		else
+			# shellcheck disable=SC2139
+			alias open="$opener";
+		fi
+		break;
+	fi
+done
+
+# Linux specific aliases, work on both MacOS and Linux.
+pbcopy() {
+	stdin=$(</dev/stdin);
+	pbcopy="$(which pbcopy)";
+	if [[ -n "$pbcopy" ]]; then
+		echo "$stdin" | "$pbcopy"
+	else
+		echo "$stdin" | xclip -selection clipboard
+	fi
+}
+pbpaste() {
+	pbpaste="$(which pbpaste)";
+	if [[ -n "$pbpaste" ]]; then
+		"$pbpaste"
+	else
+		xclip -selection clipboard
+	fi
+}
+
 # Easier navigation: .., ..., ...., ....., ~ and -
 #alias ..="cd .."
 #alias ...="cd ../.."
@@ -239,6 +272,12 @@ alias mergepdf='gs -q -dNOPAUSE -dBATCH -sDEVICE=pdfwrite -sOutputFile=_merged.p
 # For example, to list all directories that contain a certain file:
 # find . -name .gitattributes | map dirname
 alias map="xargs -n1"
+
+# One of @janmoesen’s ProTip™s
+for method in GET HEAD POST PUT DELETE TRACE OPTIONS; do
+	# shellcheck disable=SC2139,SC2140
+	alias "$method"="lwp-request -m \"$method\""
+done
 
 # Kill all the tabs in Chrome to free up memory
 # [C] explained: http://www.commandlinefu.com/commands/view/402/exclude-grep-from-your-grepped-output-of-ps-alias-included-in-description
