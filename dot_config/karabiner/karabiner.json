@@ -2140,7 +2140,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.google\\.Chrome$",
-                                            "^org\\.mozilla\\.firefoxdeveloperedition$"
+                                            "^org\\.mozilla\\.firefoxdeveloperedition$",
+                                            "^org\\.mozilla\\.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -2171,7 +2172,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.google\\.Chrome$",
-                                            "^org\\.mozilla\\.firefoxdeveloperedition$"
+                                            "^org\\.mozilla\\.firefoxdeveloperedition$",
+                                            "^org\\.mozilla\\.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -2207,7 +2209,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.google\\.Chrome$",
-                                            "^org\\.mozilla\\.firefoxdeveloperedition$"
+                                            "^org\\.mozilla\\.firefoxdeveloperedition$",
+                                            "^org\\.mozilla\\.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
@@ -2263,7 +2266,8 @@
                                     {
                                         "bundle_identifiers": [
                                             "^com\\.google\\.Chrome$",
-                                            "^org\\.mozilla\\.firefoxdeveloperedition$"
+                                            "^org\\.mozilla\\.firefoxdeveloperedition$",
+                                            "^org\\.mozilla\\.firefox$"
                                         ],
                                         "type": "frontmost_application_if"
                                     }
