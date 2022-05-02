@@ -1,13 +1,5 @@
 # Alternative version manager to NVM
-# eval "$(fnm env)"
-
-# Enable Node Version Manager.
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-
-# Provide Node completions.
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-
+eval "$(fnm env --use-on-cd)"
 
 # Use npx instead of installing global npm modules
 function make_npx_alias () {
