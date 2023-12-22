@@ -1,6 +1,3 @@
-# Alternative version manager to NVM
-eval "$(fnm env --use-on-cd)"
-
 # Use npx instead of installing global npm modules
 function make_npx_alias () {
   alias $1="npx $@"
