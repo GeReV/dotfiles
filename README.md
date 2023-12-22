@@ -39,7 +39,7 @@ sh -c "$(curl -fsSL chezmoi.io/get)" -- init --apply -S ~/.dotfiles https://gith
 
 ### Other subdirectories
 
-* The `.chezmoiscripts` directory contains all setup scripts that are run once on setup.
+* The `/scripts` directory contains all setup scripts that are run once on setup.
 * The `/bin` directory contains utility shell scripts. This directory is added to the path.
 * The `/config` directory just exists. If a config file doesn't **need** to go in `~/`, reference it from the `/config` directory.
 * The `/source` directory contains files that are sourced whenever a new shell is opened (in alphanumeric order, hence the funky names).
