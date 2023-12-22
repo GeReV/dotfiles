@@ -30,7 +30,7 @@ apt_packages+=(
   cowsay
   curl
   docker.io
-  docker-compose
+  docker-compose-plugin
   exa
   fd-find
   git-core
