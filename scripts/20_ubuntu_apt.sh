@@ -65,8 +65,6 @@ apt_packages+=(
   libncurses5-dev libffi-dev libgdbm-dev zlib1g-dev
 )
 
-add_ppa ppa:shutter/ppa
-
 if is_ubuntu_desktop; then
   # https://www.ubuntuupdates.org/ppa/google_chrome
   apt_keys+=(https://dl-ssl.google.com/linux/linux_signing_key.pub)
