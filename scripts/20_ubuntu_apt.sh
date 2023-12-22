@@ -41,6 +41,7 @@ apt_packages+=(
   imagemagick
   jq
   mercurial
+  neovim
   nmap
   postgresql
   ripgrep
@@ -53,10 +54,6 @@ apt_packages+=(
   vim
   zsh
 )
-
-# https://github.com/neovim/neovim/wiki/Installing-Neovim
-add_ppa ppa:neovim-ppa/stable
-apt_packages+=(neovim)
 
 # https://github.com/rbenv/ruby-build/wiki
 apt_packages+=(
