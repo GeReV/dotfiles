@@ -36,7 +36,6 @@ apt_packages+=(
   git-core
   gnupg2
   groff
-  grub-customizer
   hollywood
   htop
   id3tool
