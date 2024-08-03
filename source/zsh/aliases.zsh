@@ -100,8 +100,8 @@ alias cls='clear;ls'
 alias df='df -h'
 alias du='du -h -d 2'
 
-alias ll='exa -alh --color-scale'
-alias ls='exa -F'
+alias ll='eza -alh --color-scale'
+alias ls='eza -F'
 
 # show me files matching "ls grep"
 alias lsg='ll | grep'

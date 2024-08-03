@@ -30,7 +30,7 @@ apt_packages+=(
   ca-certificates
   cowsay
   curl
-  exa
+  eza
   fd-find
   git-core
   gnupg2

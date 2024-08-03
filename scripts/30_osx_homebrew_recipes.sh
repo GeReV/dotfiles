@@ -25,7 +25,7 @@ recipes=(
 
   fnm
   fd
-  exa
+  eza
   git
   git-lfs
   git-town
