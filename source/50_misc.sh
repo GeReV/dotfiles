@@ -17,7 +17,7 @@ if [[ -e ~/.ssh/known_hosts ]]; then
 fi
 
 # "fuck"
-if ! command -v thefuck &> /dev/null; then
+if command -v thefuck &> /dev/null; then
   eval $(thefuck --alias)
 fi
 
