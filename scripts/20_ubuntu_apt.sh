@@ -25,7 +25,7 @@ function add_ppa() {
 
 # Misc.
 apt_packages+=(
-  bat
+  batcat
   build-essential
   ca-certificates
   cowsay
