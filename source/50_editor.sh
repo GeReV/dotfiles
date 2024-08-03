@@ -3,7 +3,7 @@
 export VISUAL=vim
 
 # If mvim is installed, use it instead of native vim
-if [[ "$(which mvim)" ]]; then
+if ! command -v mvim &> /dev/null; then
     VISUAL="mvim -v"
     alias vim="$VISUAL"
 fi
@@ -19,7 +19,7 @@ fi
 export EDITOR="$VISUAL"
 
 # VS Code
-if [[ "$(which code)" ]]; then
+if ! command -v code &> /dev/null; then
   EDITOR="code --wait"
   VISUAL="code --wait --new-window"
   unset GIT_EDITOR

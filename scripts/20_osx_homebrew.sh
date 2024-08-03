@@ -2,7 +2,7 @@
 is_osx || return 0
 
 # Install Homebrew.
-if [[ ! "$(type -p brew)" ]]; then
+if ! command -v brew &> /dev/null; then
   e_header "Installing Homebrew"
   
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -11,7 +11,9 @@ if [[ ! "$(type -p brew)" ]]; then
 fi
 
 # Exit if, for some reason, Homebrew is not installed.
-[[ ! "$(type -p brew)" ]] && e_error "Homebrew failed to install." && return 1
+if ! command -v brew &> /dev/null; then
+  e_error "Homebrew failed to install." && return 1
+fi
 
 e_header "Updating Homebrew"
 brew doctor

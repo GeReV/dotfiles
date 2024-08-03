@@ -59,7 +59,7 @@ e_arrow "Installing/updating Node.js...\n"
 nvm install node
 
 # Install Ruby.
-if [[ "$(type -p rbenv)" ]]; then
+if command -v rbenv &> /dev/null; then
   versions=(2.4.0)
 
   rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))

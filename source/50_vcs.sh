@@ -99,7 +99,7 @@ function ged() {
   fi
   IFS="$_IFS"
   gcd
-  if [[ "$(which code)" ]]; then
+  if ! command -v code &> /dev/null; then
     code "$(git rev-parse --show-toplevel)" -n "${files[@]}"
   else
     q "${files[@]}"

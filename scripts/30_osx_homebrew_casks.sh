@@ -2,7 +2,9 @@
 is_osx || return 0
 
 # Exit if Homebrew is not installed.
-[[ ! "$(type -p brew)" ]] && e_error "Brew casks need Homebrew to install." && return 1
+if ! command -v brew &> /dev/null; then
+  e_error "Brew casks need Homebrew to install." && return 1
+fi
 
 # Ensure the cask kegs are installed.
 kegs=(

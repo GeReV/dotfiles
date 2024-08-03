@@ -12,7 +12,7 @@ else
 fi
 
 # Directory listing
-if [[ "$(type -p tree)" ]]; then
+if type -p tree &> /dev/null; then
   alias ll='tree --dirsfirst -aLpughDFiC 1'
   alias lsd='ll -d'
 else

@@ -49,7 +49,6 @@ apt_packages+=(
   software-properties-common
   silversearcher-ag
   telnet
-  thefuck
   tree
   vim
   zsh

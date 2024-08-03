@@ -9,7 +9,9 @@ export PATH
 alias c="tr -d '\n' | pbcopy"
 
 # Make 'less' more.
-[[ "$(type -p lesspipe.sh)" ]] && eval "$(lesspipe.sh)"
+if type -p lesspipe.sh &> /dev/null; then
+  eval "$(lesspipe.sh)"
+fi
 
 # Start ScreenSaver. This will lock the screen if locking is enabled.
 alias ss="open /System/Library/Frameworks/ScreenSaver.framework/Versions/A/Resources/ScreenSaverEngine.app"
