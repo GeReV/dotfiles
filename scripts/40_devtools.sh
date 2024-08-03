@@ -60,7 +60,7 @@ nvm install node
 
 # Install Ruby.
 if command -v rbenv &> /dev/null; then
-  versions=(2.4.0)
+  versions=(3.3.4)
 
   rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))
   if (( ${#rubies[@]} > 0 )); then
