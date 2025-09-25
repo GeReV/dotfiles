@@ -3,14 +3,14 @@
 export VISUAL=vim
 
 # If mvim is installed, use it instead of native vim
-if ! command -v mvim &> /dev/null; then
-    VISUAL="mvim -v"
+if ! command -v nvim &> /dev/null; then
+    VISUAL="nvim"
     alias vim="$VISUAL"
 fi
 
 if [[ ! "$SSH_TTY" ]]; then
   if [[ ! "$TMUX" ]]; then
-    is_osx && VISUAL=mvim || VISUAL=gvim
+    is_osx && VISUAL=nvim || VISUAL=gvim
   fi
   export LESSEDIT="$VISUAL ?lm+%lm -- %f"
   export GIT_EDITOR="$VISUAL -f"
