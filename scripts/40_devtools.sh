@@ -37,42 +37,13 @@ asdf plugin add ruby
 asdf plugin add rust
 asdf plugin update --all
 
-# asdf install golang latest
+asdf install golang latest
 asdf install nodejs latest
+asdf install python latest
+asdf install ruby latest
+asdf install rust latest
 
-# Install NVM
-e_arrow "Installing/updating Node Version Manager...\n"
-export NVM_DIR="$HOME/.nvm" && (
-    NVM_NEW=false
-    if [ ! -d "$NVM_DIR" ]; then
-        git clone https://github.com/nvm-sh/nvm.git "$NVM_DIR"
-        NVM_NEW=true
-    fi
-    cd "$NVM_DIR"
-    if [ ! $NVM_NEW ]; then
-        git fetch --tags origin
-    fi
-    HASH=$(git describe --abbrev=0 --tags --match "v[0-9]*" "$(git rev-list --tags --max-count=1)")
-    git checkout "$HASH"
-) && \. "$NVM_DIR/nvm.sh" && \. "$NVM_DIR/bash_completion"
-
-# Install Node.js
-e_arrow "Installing/updating Node.js...\n"
-nvm install node
-
-# Install Ruby.
-if command -v rbenv &> /dev/null; then
-  versions=(3.1.2)
-
-  rubies=($(setdiff "${versions[*]}" "$(rbenv whence ruby)"))
-  if (( ${#rubies[@]} > 0 )); then
-    e_arrow "Installing Ruby versions: ${rubies[*]}"
-    for r in "${rubies[@]}"; do
-      rbenv install "$r"
-      [[ "$r" == "${versions[0]}" ]] && rbenv global "$r"
-    done
-  fi
-fi
-
+# Install UV for Python
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
 e_success "Done.\n\n"
