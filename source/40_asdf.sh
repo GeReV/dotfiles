@@ -8,7 +8,7 @@ fi
 
 # Provide ASDF completions (already loaded if using Homebrew).
 if [ -s "$ASDF_DATA_DIR/completions" ]; then
-    fpath=(${ASDF_DAAT_DIR}/completions $fpath)
+    fpath=(${ASDF_DATA_DIR}/completions $fpath)
     # initialise completions with ZSH's compinit
     autoload -Uz compinit && compinit
 fi
