@@ -8,23 +8,25 @@ command -v git >/dev/null 2>&1 || {
     exit 1
 }
 
+ASDF_VERSION="${ASDF_VERSION:-v0.18.0}"
+
 # Install ASDF Version Manager
 # https://asdf-vm.com/
 if ! command -v brew > /dev/null; then
     e_arrow "Installing/updating ASDF Extendable Version Manager...\n"
-    export ASDF_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
-        ASDF_NEW=false
-        if [ ! -d "$ASDF_DIR" ]; then
-            git clone https://github.com/asdf-vm/asdf.git "$ASDF_DIR"
-            ASDF_NEW=true
+    export ASDF_DATA_DIR="${ASDF_DIR:-$HOME/.asdf}" && (
+        if [ ! -d "$ASDF_DATA_DIR" ]; then
+            mkdir "$ASDF_DATA_DIR"
+
+            wget "https://github.com/asdf-vm/asdf/releases/download/$ASDF_VERSION/asdf-$ASDF_VERSION-linux-amd64.tar.gz" -O /tmp/asdf-$ASDF_VERSION.tar.gz
+
+            tar -xvf /tmp/asdf-$ASDF_VERSION.tar.gz "$HOME/bin"
         fi
-        cd "$ASDF_DIR"
-        if [ $ASDF_NEW ]; then
-            git checkout "$(git describe --abbrev=0 --tags)"
-        else
-            asdf update
-        fi
-    ) && \. "$ASDF_DIR/asdf.sh" && ([ -z "$BASH_VERSION" ] || \. "$ASDF_DIR/completions/asdf.bash")
+    )
+
+    mkdir -p "$ASDF_DATA_DIR/completions"
+
+    asdf completion zsh > "${ASDF_DATA_DIR:-$HOME/.asdf}/completions/_asdf"
 fi
 
 e_arrow "Installing/updating ASDF plugins...\n"
