@@ -2,6 +2,8 @@
 # This should replace all language-secific version managers.
 export ASDF_DATA_DIR="${ASDF_DATA_DIR:-$HOME/.asdf}"
 
+export PATH="$ASDF_DATA_DIR/shims:$PATH"
+
 if [[ ! -d $ASDF_DATA_DIR ]] && type brew &> /dev/null; then
     ASDF_DATA_DIR="$(brew --prefix asdf)"
 fi
